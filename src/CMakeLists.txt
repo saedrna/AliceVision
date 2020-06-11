@@ -118,8 +118,14 @@ if(WIN32)
   add_definitions(-DNOMINMAX)
   add_definitions(-D_USE_MATH_DEFINES)
   if(MSVC)
+    set(
+    CMAKE_CXX_FLAGS
+    "${CMAKE_CXX_FLAGS} /bigobj /MP /wd4005 /wd4996 /wd4819 /wd4251 /wd4267 /wd4244 /wd4275 /wd4530 /wd4334 /wd4018"
+    )
     add_compile_options(/bigobj)
     add_compile_options(/MP)
+    add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
+    add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
   endif()
 endif()
 
